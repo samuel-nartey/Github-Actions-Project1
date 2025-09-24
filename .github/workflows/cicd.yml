@@ -71,6 +71,9 @@ jobs:
         cache: maven
     - name: Build Project
       run: mvn package
+      
+    - name: Install unzip
+      run: sudo apt update && sudo apt install -y unzip
 
     - uses: actions/checkout@v4
       with:
