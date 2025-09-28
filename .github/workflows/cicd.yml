@@ -117,7 +117,17 @@ jobs:
         with: 
           name: app-jar
           path: app
-      
+          
+      - name: Verify files exist
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in current directory:"
+          ls -la
+          echo "Files in app/ directory:"
+           ls -la app/
+          echo "JAR file path:"
+          find . -name "*.jar"
+          
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -130,5 +140,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
           tags: itsammy/app:latest
